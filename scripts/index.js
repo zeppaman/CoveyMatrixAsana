@@ -13,6 +13,10 @@ var app = new Vue({
     
   },
     methods: {
+      showHideSettigns: function()
+      {
+        this.showSettings=!this.showSettings;
+      },
         loadTasks:function(event)
         {
 
@@ -106,7 +110,7 @@ var app = new Vue({
                               
                               
                                 
-                               
+                              self.showSettings=false;
                                 app.$forceUpdate();
                                 
                                 
@@ -135,6 +139,7 @@ var app = new Vue({
     },
   
   data:{
+    showSettings:true,
     pat: '',
     currentUser:{
       email:"xxx",

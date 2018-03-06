@@ -29,9 +29,10 @@
 
   
   <div id="demo">
+    <a href="#"  v-on:click="showHideSettigns">Settings</a>
       <page-head></page-head>  
 
-    <div class="settings">
+    <div class="settings" v-if="showSettings">
       <input v-model="pat" placeholder="insert PAT here"> 
         <button v-on:click="loadTasks">Load</button> <i>  <a href="https://app.asana.com/-/account_api" >Go Here to get PAT </a></i>
       <p>Yout PAT is: {{pat}}</p>
