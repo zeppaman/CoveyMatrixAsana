@@ -19,7 +19,14 @@ var app = new Vue({
     {
       console.log("autorization neede");
       localStorage.clear();
-      window.location="https://app.asana.com/-/oauth_authorize?response_type=token&client_id=579919199829674&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2F&state=<STATE_PARAM>";
+      if(window.location.href.indexOf("localhost")>1)
+      {
+        window.location="https://app.asana.com/-/oauth_authorize?response_type=token&client_id=579919199829674&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2F&state=<STATE_PARAM>";
+      }
+      else
+      {
+        window.location="https://app.asana.com/-/oauth_authorize?response_type=token&client_id=588456653596032&redirect_uri=https%3A%2F%2Fapp.covey-matrix-asana.danielefontani.it&state=<STATE_PARAM>";
+      }
     };
 
     if(!localStorage.getItem("token"))
