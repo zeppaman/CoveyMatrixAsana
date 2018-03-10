@@ -9,40 +9,25 @@
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="styles/index.css">
-  
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet"> 
   <!-- Scripts -->
   <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
   <script src="https://github.com/Asana/node-asana/releases/download/v0.15.1/asana-min.js"></script>
-  <script src="https://raw.githubusercontent.com/greyby/vue-spinner/master/dist/vue-spinner.js" ></script>
+  <script src="https://unpkg.com/vue-router"></script>
 </head>
 <body>
   
     
-  
-  <script type="text/x-template" id="page-head">
-  
-    <header>
-      <h1>Covey Matrix</h1>
-    </header>
-  </script>
-  
+
 
   
   <div id="demo">
-    <a href="#"  v-on:click="showHideSettigns">Settings</a>
-      <page-head></page-head>  
-
-    <div class="settings" v-if="showSettings">
-      <input v-model="pat" placeholder="insert PAT here"> 
-        <button v-on:click="loadTasks">Load</button> <i>  <a href="https://app.asana.com/-/account_api" >Go Here to get PAT </a></i>
-      <p>Yout PAT is: {{pat}}</p>
-        <pre class="debug">
-          email:{{currentUser.email}}
-          workspaces:{{currentUser.workspaces}}
-          inited: {{displayData.isInited}}
-          tasks: {{displayData}}
-        </pre>
-      </div>
+    
+    <header class="toolbar">
+        <i class="fas fa-sign-out-alt icon-toolbar pull-left"  v-on:click="logout"> </i>
+       <div >  <h1>Covey Matrix</h1></div>
+        <i class="fas fa-sync-alt icon-toolbar pull-right"  v-on:click="loadTasks"> </i>
+    </header> 
     
    
    

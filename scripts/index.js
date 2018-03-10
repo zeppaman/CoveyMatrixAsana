@@ -2,26 +2,74 @@
  * index.js
  * - All our useful JS goes here, awesome!
  */
+var router = new VueRouter({
+  mode: 'history',
+  routes: []
+});
 
 // Init Vue!
 var app = new Vue({
-
+  router,
   el: '#demo',
+  created: function(){
+    console.log("created");
+    let self = this;
+    
+    Asana.Dispatcher.maybeReauthorize=function()
+    {
+      console.log("autorization neede");
+      localStorage.clear();
+      window.location="https://app.asana.com/-/oauth_authorize?response_type=token&client_id=579919199829674&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2F&state=<STATE_PARAM>";
+    };
+
+    if(!localStorage.getItem("token"))
+    {
+      Asana.Dispatcher.maybeReauthorize();
+    }
+    else
+    {
+      this.loadTasks();
+    }
+  },
 	mounted: function () {
-   this.displayData= new Array();
+    console.log("mounted");
+    this.displayData= new Array();
     this.displayData.isInited=false;
+   
+    let hash = this.$route.hash;
+    if(hash)
+    { 
+      let map=new Array();
+       this.$route.hash.substring(1).split("&").forEach(function(element){
+         let item=element.split("=");
+         map[item[0]]=item[1];       
+        });
+        if(map["access_token"])
+        {
+          localStorage.setItem("token",map["access_token"]);
+          window.location.href="/";
+        }
+    }
+    
+
     
   },
     methods: {
+      logout: function()
+      {
+        localStorage.clear();
+        window.location.href="/";
+      },
       showHideSettigns: function()
       {
         this.showSettings=!this.showSettings;
       },
         loadTasks:function(event)
         {
+         
 
          var self = this;
-          var client = Asana.Client.create().useAccessToken(this.pat);
+          var client = Asana.Client.create().useAccessToken(localStorage.getItem("token"));
           client.users.me()
             .then(function(meReq) {
          // console.log("user","done");
@@ -120,6 +168,7 @@ var app = new Vue({
              
             });
              });
+           
           },
       containsTag: function(task,tag)
       {
@@ -163,4 +212,8 @@ var app = new Vue({
   },
    
   
-})
+});
+
+
+
+
