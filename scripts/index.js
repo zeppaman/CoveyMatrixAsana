@@ -55,6 +55,26 @@ var app = new Vue({
     
   },
     methods: {
+      closeTask: function(task)
+      {
+        self=this;
+        var client = Asana.Client.create().useAccessToken(localStorage.getItem("token"));
+        client.tasks.update(task.id,{
+          completed:true
+        } ).then(function(data){
+          console.log(data);
+          self.displayData.items.forEach(function(list){
+            list.forEach(function(element)
+            {
+              if(element.id==task.id)
+              {
+                list.pop(element);
+              }
+            });
+          });
+          self.$forceUpdate();
+        });
+      },
       logout: function()
       {
         localStorage.clear();
@@ -108,10 +128,10 @@ var app = new Vue({
                               //console.log(collection.data);
                               self.tasks=collection.data;
                               
-                                self.uiTasks=new Array();
-                                self.xiTasks=new Array();
-                                self.uxTasks=new Array();
-                                self.xxTasks=new Array();
+                                // self.uiTasks=new Array();
+                                // self.xiTasks=new Array();
+                                // self.uxTasks=new Array();
+                                // self.xxTasks=new Array();
                               
                                  self.displayData.items= new Array();
                                self.displayData.isInited=true;
@@ -133,22 +153,22 @@ var app = new Vue({
                                 console.log(  element.url);
                                 if(isImportant && isUrgent)
                                 {
-                                  self.uiTasks.push(element); 
+                                  //self.uiTasks.push(element); 
                                   self.displayData.items[0].push(element); 
                                 }
                                 else if(!isImportant && !isUrgent)
                                 {
-                                  self.xxTasks.push(element);
+                                 // self.xxTasks.push(element);
                                    self.displayData.items[3].push(element);
                                 }
                                  else if(isImportant )
                                 {
-                                  self.xiTasks.push(element);
+                                  //self.xiTasks.push(element);
                                   self.displayData.items[2].push(element); 
                                 }
                                  else if(isUrgent)
                                 {
-                                   self.uxTasks.push(element);
+                                  // self.uxTasks.push(element);
                                    self.displayData.items[1].push(element);
                                 }
                                 
@@ -205,10 +225,10 @@ var app = new Vue({
         { hex: "#d1af94" },
         { hex: "#97d5e0" },
       ],
-    uiTasks:[],
-    xiTasks:[],
-    ixTaskx:[],
-    xxTaskx:[],
+    // uiTasks:[],
+    // xiTasks:[],
+    // ixTaskx:[],
+    // xxTaskx:[],
     displayData:{isInited:false},
   },
    

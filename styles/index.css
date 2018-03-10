@@ -99,8 +99,42 @@ div.litem>a {
   text-decoration: none;
   padding: 8px 10px;
   line-height: 31px;
+  font-size: 20px;
 }
 div.litem>a:hover {
   color: #aaa;
   font-weight: bold;
+}
+
+i.close-btn {
+  font-size: 26px;
+  line-height: 38px;
+  margin: 0px 5px;
+}
+i.close-btn:hover {
+  color: green;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  animation: spin 2s linear infinite;
+  margin: 10% auto;
+  display: block;
+  position: fixed;
+  z-index: 999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
