@@ -101,6 +101,7 @@ var app = new Vue({
                             client.tasks.findAll({
                               workspace: self.defaultWorkspace.id,
                               assignee: self.currentUser.id,
+                              completed_since:new Date(),
                               opt_fields: 'id,name,assignee_status,completed,tags'})
                             .then(function(collection) {
                              // console.log("findAll","done");
@@ -127,9 +128,9 @@ var app = new Vue({
                                 
                                 console.log(" =>",isImportant,isUrgent)
                              
+                                element.url="https://app.asana.com/0/"+self.currentUser.id	+"/"+element.id+"/f";
                                 
-                                
-                                
+                                console.log(  element.url);
                                 if(isImportant && isUrgent)
                                 {
                                   self.uiTasks.push(element); 

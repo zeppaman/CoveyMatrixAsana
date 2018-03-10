@@ -43,7 +43,7 @@
 			  <div class="color" v-for="(color, index) in colors" v-bind:key="{index}" v-bind:style="{ backgroundColor: color.hex }">
       
           <div class="litem" v-for="item in displayData.items[index]"  >        
-            {{item.name}}
+            <a v-bind:href="item.url" target="_blank">{{item.name}}</a>
           </div>
         </div>
    

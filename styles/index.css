@@ -13,7 +13,6 @@ header {
   letter-spacing: 2px;
   font-weight: normal;
   text-align: center;
-  margin-top: 50px;
   margin-bottom: 50px;
 }
 
@@ -81,6 +80,10 @@ header>i.icon-toolbar
   color: #CCC;
   display: inline-block;
 }
+header>i.icon-toolbar:hover
+{
+  color: #222;
+}
 header>i.pull-left
 {
   float: left;
@@ -88,4 +91,16 @@ header>i.pull-left
 .pull-right
 {
   float: right;
+}
+
+div.litem>a {
+  color: #333;
+  font-style: normal;
+  text-decoration: none;
+  padding: 8px 10px;
+  line-height: 31px;
+}
+div.litem>a:hover {
+  color: #aaa;
+  font-weight: bold;
 }
