@@ -20,7 +20,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: sudo apt-get install -y lftp
-      - run:lftp -e "mirror -R ./ /public_html" -u ${ftp_user},${ftp_password} ${ftp_host}
+      - run: lftp -e "mirror -R ./ /public_html" -u ${ftp_user},${ftp_password} ${ftp_host}
       #- run: sh .circleci/build.sh
             
       - store_artifacts:
