@@ -22,7 +22,7 @@ jobs:
       - run: sudo apt-get install -y lftp
       - run: mkdir ~/.lftp
       - run: touch ~/.lftp/rc
-      - run: cat ~/.lftp/rc set ssl:verify-certificate no
+      - run: echo "set ssl:verify-certificate no" >> ~/.lftp/rc
       - run: lftp -e "mirror -R ./ /public_html" -u ${ftp_user},${ftp_password} ${ftp_host}
       #- run: sh .circleci/build.sh
             
