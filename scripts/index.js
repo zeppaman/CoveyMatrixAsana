@@ -204,7 +204,7 @@ var app = new Vue({
          // console.log("containsTags", task.id, tag.id, task.tags)
         task.tags.forEach(function(element) {
         //  cosole.log("check", element.id, tag.id)
-          if(element.id===tag.id)
+          if(element.name===tag.name)
             {
               console.log(task.name," IS ",tag.name)
               result= true;
