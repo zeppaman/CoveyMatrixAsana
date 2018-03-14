@@ -15,7 +15,8 @@ jobs:
      
       - run: npm install
       - run: npm install -D ftp-deploy
-      - run: node .circleci/deploy.js
+      - run: echo pwd
+      - run: node deploy.js
             
       - store_artifacts:
           path: /tmp/artifacts
