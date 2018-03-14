@@ -14,8 +14,8 @@ jobs:
       - checkout
      
       - run: npm install
-       - run: npx gulp build
-       - run: node .circleci/deploy.js
+      - run: npx gulp build
+      - run: node .circleci/deploy.js
             
       - store_artifacts:
           path: /tmp/artifacts
