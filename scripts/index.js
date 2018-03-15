@@ -124,6 +124,7 @@ var app = new Vue({
                               }
                            
                               console.log(  self.importantTag);
+                            });
                               
                             client.tasks.findAll({
                               workspace: self.defaultWorkspace.id,
@@ -195,15 +196,14 @@ var app = new Vue({
                         });
              
             });
-             });
            
           },
       containsTag: function(task,tag)
       {
         let result=false;
-         // console.log("containsTags", task.id, tag.id, task.tags)
+         
         task.tags.forEach(function(element) {
-        //  cosole.log("check", element.id, tag.id)
+          console.log("containsTags", task.id,task.name, tag.id, tag.name);
           if(element.name===tag.name)
             {
               console.log(task.name," IS ",tag.name)
