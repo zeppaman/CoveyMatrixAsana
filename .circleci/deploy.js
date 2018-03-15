@@ -7,8 +7,10 @@ var config = {
     host: process.env.ftp_host,
     port: 21,
     localRoot: __dirname + "/../",
-    remoteRoot: "/",
-    include: ['*']
+    remoteRoot: "/public_html",
+    include: ['*'],
+    exclude: ['.circleci', 'node_modules', 'tmp/*', 'build/*']
+}
 }
    
 console.log(config);
