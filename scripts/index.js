@@ -103,27 +103,27 @@ var app = new Vue({
               self.currentUser=meReq;
             self.defaultWorkspace=self.currentUser.workspaces[0];
             
-              client.tags.findByWorkspace( self.defaultWorkspace.id,{archived:false})
+              client.tags.findByWorkspace( self.defaultWorkspace.id,{archived:false, limit:99})
                           .then(function(tags) {
                // console.log("findByWorkspace","done");
                             self.tags=tags;
                            
                             self.tags.data.forEach(function(element) {
-                                console.log(element.name.toLowerCase());
+                             //   console.log(element.name.toLowerCase());
                               if(element.name.toLowerCase()=="important")
                               {
-                                console.log("found!!!");
+                                //console.log("found!!!");
                                 self.importantTag=element;
                               }
                               
                               
                               if(element.name.toLowerCase()=="urgent")
                               {
-                                console.log("found!!!");
+                               // console.log("found!!!");
                                 self.urgentTag=element;
                               }
                            
-                              console.log(  self.importantTag);
+                             // console.log(  self.importantTag);
                             });
                               
                             client.tasks.findAll({
@@ -203,8 +203,8 @@ var app = new Vue({
         let result=false;
          
         task.tags.forEach(function(element) {
-          console.log("containsTags", task.id,task.name, tag.id, tag.name);
-          if(element.name===tag.name)
+          console.log("containsTags", task.id,task.name, tag.id, tag.name, element.id, element.name);
+          if(element.id===tag.id)
             {
               console.log(task.name," IS ",tag.name)
               result= true;
