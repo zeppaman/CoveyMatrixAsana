@@ -10,7 +10,7 @@ var config = {
     remoteRoot: "/public_html",
     include: ['*'],
     exclude: ['.circleci', 'node_modules', 'tmp/*', 'build/*']
-}
+
 }
    
 console.log(config);
