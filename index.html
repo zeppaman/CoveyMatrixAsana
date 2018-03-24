@@ -15,36 +15,50 @@
   <script src="https://github.com/Asana/node-asana/releases/download/v0.15.1/asana-min.js"></script>
   <script src="https://unpkg.com/vue-router"></script>
 </head>
-<body>
+<body >
   
     
 
+<script type="text/x-template" id="quadrant-template">
+  <div class="quadrant"  v-bind:style="{ backgroundColor: color }">         
 
+      <div class="color">
+          <div class="litem" v-for="item in tasks"  >        
+              <i class="far fa-check-circle close-btn"  @click="closeTask(item)"></i> &nbsp; <a v-bind:href="item.url" target="_blank">{{item.name}}</a>
+          </div>
+        </div>
+  </div>
+</script>
   
-  <div id="demo">
+  <div id="wrapper" class="app">
     
-    <header class="toolbar">
+    
+    <div  id="header">
         <i class="fas fa-sign-out-alt icon-toolbar pull-left"  v-on:click="logout"> </i>
        <div >  <h1>Covey Matrix</h1></div>
         <i class="fas fa-sync-alt icon-toolbar pull-right"  v-on:click="loadTasks"> </i>
-    </header> 
+    </div> 
     
    
     
-      
-    <div class="grid">
-      
- 	<div class="grid-nodata loader "  v-if="!displayData.isInited">
-    
-  </div>
-  	<div class="grid-data"  v-if="displayData.isInited">  
+    <div class="grid-nodata loader  "  v-if="!displayData.isInited"></div>
+    <div class="content grid-data"  v-if="displayData.isInited">  
        
-			  <div class="color" v-for="(color, index) in colors" v-bind:key="{index}" v-bind:style="{ backgroundColor: color.hex }">
-      
-          <div class="litem" v-for="item in displayData.items[index]"  >        
-              <i class="far fa-check-circle close-btn"  v-on:click="closeTask(item)"></i> &nbsp; <a v-bind:href="item.url" target="_blank">{{item.name}}</a>
-          </div>
-        </div>
+
+        <table>
+            <tr>
+              <td> <quadrant index="1" v-bind:color="colors[0].hex"  v-bind:tasks="displayData.items[0]"  ></quadrant></td>
+              <td> <quadrant index="2" v-bind:color="colors[1].hex"  v-bind:tasks="displayData.items[1]"   ></quadrant></td>
+            </tr>
+            <tr>
+              <td> <quadrant index="3" v-bind:color="colors[2].hex"  v-bind:tasks="displayData.items[2]"   ></quadrant></td>
+              <td> <quadrant index="4" v-bind:color="colors[3].hex"  v-bind:tasks="displayData.items[3]"   ></quadrant></td>
+        
+            </tr>
+          </table>
+
+    
+			
    
     </div>
     </div>

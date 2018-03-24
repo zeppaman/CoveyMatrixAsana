@@ -7,9 +7,16 @@
 //   template: '#page-head'
 // })
 
-Vue.component('grid', {
-  template: '#grid',
-  props: ['colors','displayData']
+Vue.component('quadrant', 
+{
+  template: '#quadrant-template',
+  props: ['index','color','tasks'],
+  methods: {
+    closeTask(item) {
+     
+      app.$emit('closeTask',item);
+    },
+  },
 
 })
 

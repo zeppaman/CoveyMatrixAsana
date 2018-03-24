@@ -10,7 +10,7 @@ var router = new VueRouter({
 // Init Vue!
 var app = new Vue({
   router,
-  el: '#demo',
+  el: '.app',
   created: function(){
     console.log("created");
     let self = this;
@@ -58,12 +58,14 @@ var app = new Vue({
         }
     }
     
-
+   this.$on("closeTask", function(item){ this.closeTask(item);});
     
   },
     methods: {
       closeTask: function(task)
       {
+        console.log("to be fixed. Rendering issue");
+        return;
         self=this;
         var client = Asana.Client.create().useAccessToken(localStorage.getItem("token"));
         client.tasks.update(task.id,{
@@ -71,10 +73,13 @@ var app = new Vue({
         } ).then(function(data){
           console.log(data);
           self.displayData.items.forEach(function(list){
+            console.log(list);
             list.forEach(function(element)
             {
+              
               if(element.id==task.id)
               {
+                console.log("popped");
                 list.pop(element);
               }
             });

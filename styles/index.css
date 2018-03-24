@@ -7,32 +7,54 @@ body {
   background: #fff;
 }
 
-header {
+div#header {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: normal;
   text-align: center;
-  margin-bottom: 50px;
+ 
+  height:100px;
 }
 
-.grid {
-  columns: 2 auto;
-  column-gap: 20px;
+div.content {
+ 
   padding-left: 10px;
   padding-right: 10px;
+  position:absolute;
+  top:100px;    
+  bottom:0;
+  left:0;
+  width: 100%;
+}
+
+
+.quadrant
+{
+  display: block;  
+  width: 100%;
+  height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .color {
-  display: inline-block;
   border-radius: 3px;
   width: 100%;
-  height: 200px;
-  margin-bottom: 20px;
-  overflow-y: scroll;
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
 }
+
+table
+{
+  height:100%;
+  width:100%;
+}
+
+tr { height: 50% }
+td {     width: 50%;
+  height: 50%;
+  max-height: 50%; }
 
 .pop-enter-active {
   transition: opacity 300ms ease-out, transform 300ms ease-out;
@@ -69,25 +91,26 @@ header {
   display: none;
 }
 
-header.toolbar>div
+#header>div
 {
   display: inline-block;
 }
-header>i.icon-toolbar
+#header>i.icon-toolbar
 { 
   font-size: 30px;
   padding: 10px;
   color: #CCC;
   display: inline-block;
 }
-header>i.icon-toolbar:hover
+#header>i.icon-toolbar:hover
 {
   color: #222;
 }
-header>i.pull-left
+#header>i.pull-left
 {
   float: left;
 }
+
 .pull-right
 {
   float: right;
