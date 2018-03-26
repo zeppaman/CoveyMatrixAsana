@@ -64,27 +64,35 @@ var app = new Vue({
     methods: {
       closeTask: function(task)
       {
-        console.log("to be fixed. Rendering issue");
-        return;
+        
+        
+
+        
         self=this;
         var client = Asana.Client.create().useAccessToken(localStorage.getItem("token"));
         client.tasks.update(task.id,{
           completed:true
         } ).then(function(data){
-          console.log(data);
-          self.displayData.items.forEach(function(list){
-            console.log(list);
-            list.forEach(function(element)
-            {
-              
-              if(element.id==task.id)
-              {
-                console.log("popped");
-                list.pop(element);
-              }
-            });
-          });
-          self.$forceUpdate();
+
+          let itemToiterate= self.displayData.items;
+          itemToiterate.forEach(function(list,index){         
+            //console.log("checking list",list,index);
+               list.forEach(function(element)
+               {
+                 //console.log("checking element",element);
+                  if(element.id==task.id)
+                  {                 
+                    list.pop(element);
+                    self.displayData.items[index]=new Array();
+                    Array.prototype.push.apply(self.displayData.items[index],list);
+                  }
+               });
+           });
+          // self.$set(self,"displayData",self.displayData);
+           self.$forceUpdate();
+
+
+         
         });
       },
       logout: function()

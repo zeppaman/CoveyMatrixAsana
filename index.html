@@ -23,7 +23,7 @@
   <div class="quadrant"  v-bind:style="{ backgroundColor: color }">         
 
       <div class="color">
-          <div class="litem" v-for="item in tasks"  >        
+          <div class="litem" v-for="item in tasks" v-bind:class="{ item }"  >        
               <i class="far fa-check-circle close-btn"  @click="closeTask(item)"></i> &nbsp; <a v-bind:href="item.url" target="_blank">{{item.name}}</a>
           </div>
         </div>
@@ -47,12 +47,12 @@
 
         <table>
             <tr>
-              <td> <quadrant index="1" v-bind:color="colors[0].hex"  v-bind:tasks="displayData.items[0]"  ></quadrant></td>
-              <td> <quadrant index="2" v-bind:color="colors[1].hex"  v-bind:tasks="displayData.items[1]"   ></quadrant></td>
+              <td> <quadrant index="1" :color="colors[0].hex"  :tasks="displayData.items[0]"  ></quadrant></td>
+              <td> <quadrant index="2" :color="colors[1].hex"  :tasks="displayData.items[1]"   ></quadrant></td>
             </tr>
             <tr>
-              <td> <quadrant index="3" v-bind:color="colors[2].hex"  v-bind:tasks="displayData.items[2]"   ></quadrant></td>
-              <td> <quadrant index="4" v-bind:color="colors[3].hex"  v-bind:tasks="displayData.items[3]"   ></quadrant></td>
+              <td> <quadrant index="3" :color="colors[2].hex"  :tasks="displayData.items[2]"   ></quadrant></td>
+              <td> <quadrant index="4" :color="colors[3].hex"  :tasks="displayData.items[3]"   ></quadrant></td>
         
             </tr>
           </table>
