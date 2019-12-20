@@ -112,11 +112,11 @@ var app = new Vue({
           var client = Asana.Client.create().useAccessToken(localStorage.getItem("token"));
           client.users.me()
             .then(function(meReq) {
-         // console.log("user","done");
+          console.log("user","done");
               self.currentUser=meReq;
             self.defaultWorkspace=self.currentUser.workspaces[0];
             
-              client.tags.findByWorkspace( self.defaultWorkspace.id,{archived:false, limit:99})
+              client.tags.findByWorkspace( self.defaultWorkspace.gid,{archived:false, limit:99})
                           .then(function(tags) {
                // console.log("findByWorkspace","done");
                             self.tags=tags;
@@ -140,8 +140,8 @@ var app = new Vue({
                             });
                               
                             client.tasks.findAll({
-                              workspace: self.defaultWorkspace.id,
-                              assignee: self.currentUser.id,
+                              workspace: self.defaultWorkspace.gid,
+                              assignee: self.currentUser.gid,
                               completed_since:new Date(),
                               opt_fields: 'id,name,assignee_status,completed,tags'})
                             .then(function(collection) {
@@ -169,7 +169,7 @@ var app = new Vue({
                                 
                                 console.log(" =>",isImportant,isUrgent)
                              
-                                element.url="https://app.asana.com/0/"+self.currentUser.id	+"/"+element.id+"/f";
+                                element.url="https://app.asana.com/0/"+self.currentUser.gid	+"/"+element.id+"/f";
                                 
                                 console.log(  element.url);
                                 if(isImportant && isUrgent)
